@@ -1,0 +1,16 @@
+node_modules/
+coverage/
+*.log
+*.tgz
+
+.env
+.env.*
+!.env.example
+.credentials.yaml
+settings.yaml
+.dsh/
+
+.arena-*
+*.local.*
+.DS_Store
+Thumbs.db

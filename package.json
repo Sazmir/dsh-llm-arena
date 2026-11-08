@@ -1,0 +1,75 @@
+{
+  "name": "dsh-llm-arena",
+  "version": "0.1.0",
+  "description": "Arena API provider bundle for DeepSeek Harness, with OpenAI Responses routing and a Windows PowerShell/.NET fallback for Cloudflare-blocked Node.js requests.",
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "cordis",
+    "llm",
+    "arena-ai",
+    "openai-responses",
+    "windows"
+  ],
+  "homepage": "https://github.com/Sazmir/dsh-llm-arena#readme",
+  "bugs": "https://github.com/Sazmir/dsh-llm-arena/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sazmir/dsh-llm-arena.git"
+  },
+  "license": "MIT",
+  "author": "Sazmir",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.0-rc.2": "compatible"
+      }
+    }
+  },
+  "meta": {
+    "title": "Arena API",
+    "description": "Adds Arena API models through OpenAI Responses with a narrow Windows Cloudflare compatibility fallback."
+  },
+  "files": [
+    "lib/",
+    "scripts/live-smoke.mjs",
+    "cordis.patch.yml",
+    "README.md",
+    "README.ru.md",
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node --check lib/index.js && node --check lib/route.js && node --check lib/route-survival.js && node --check lib/transport.js && node --check scripts/live-smoke.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:live": "node scripts/live-smoke.mjs",
+    "pack:check": "npm pack --dry-run",
+    "verify": "npm run check && npm test && npm run pack:check"
+  },
+  "engines": {
+    "node": ">=22",
+    "dsh": "0.2.0-rc.2"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-llm-pi-ai": "0.2.0-rc.2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-llm-pi-ai": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

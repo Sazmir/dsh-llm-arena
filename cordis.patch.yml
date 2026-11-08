@@ -1,0 +1,6 @@
+# Runtime owns the Arena provider merge. A static llm-pi-ai patch would replace
+# providers contributed by earlier bundles, so this layer inserts only the
+# route-survival and Windows transport plugin.
+- insert:
+    - id: llm-arena
+      name: dsh-llm-arena
