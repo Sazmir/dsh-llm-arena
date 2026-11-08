@@ -28,6 +28,9 @@ test('bundle patch inserts only the runtime plugin', async () => {
 test('package metadata points at the public repository and bundle patch', async () => {
   const pkg = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'))
   assert.equal(pkg.name, 'dsh-llm-arena')
+  assert.equal(pkg.version, '0.1.1')
+  assert.match(pkg.description, /promotional Arena Router credits/)
+  assert.match(pkg.meta.description, /All models balance/)
   assert.equal(pkg.license, 'MIT')
   assert.equal(pkg.private, undefined)
   assert.equal(pkg.dsh.bundle.patch, './cordis.patch.yml')
@@ -52,8 +55,19 @@ test('English and Russian READMEs keep model and command parity', async () => {
     assert.ok(english.includes(`\`${id}\``), `English README misses ${id}`)
     assert.ok(russian.includes(`\`${id}\``), `Russian README misses ${id}`)
   }
+  for (const label of [
+    'Arena Router · Coding (promo)',
+    'Arena Router · Claude (promo)',
+    'All models · Claude Fable 5.1',
+    'All models · Claude Opus 5.5',
+    'All models · Claude Sonnet 5.5',
+    'All models · Claude Haiku 5.5',
+  ]) {
+    assert.ok(english.includes(label), `English README misses ${label}`)
+    assert.ok(russian.includes(label), `Russian README misses ${label}`)
+  }
   for (const command of [
-    'dsh plugin --profile web add github:Sazmir/dsh-llm-arena#v0.1.0',
+    'dsh plugin --profile web add github:Sazmir/dsh-llm-arena#v0.1.1',
     'dsh --profile web --dump-config',
     'npm run verify',
     'npm run test:live',

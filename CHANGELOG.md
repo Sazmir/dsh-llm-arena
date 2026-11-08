@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here.
 
+## 0.1.1 - 2026-11-08
+
+- Mark both Arena router entries as the recommended choices for promotional **Arena Router** balance.
+- Mark direct Claude entries as requiring a nonzero **All models** balance.
+- Add prominent English and Russian guidance for avoiding HTTP `402 paid_credits_required` on router-only promotional accounts.
+
 ## 0.1.0 - 2026-11-08
 
 - Add the `arena` provider route for OpenAI Responses at `https://api.arena.ai/v1`.

@@ -2,10 +2,13 @@
 
 English | [Русский](README.ru.md)
 
-A DeepSeek Harness provider bundle for Arena API: OpenAI Responses routing, six compact model entries, additive runtime route restoration, and a narrow Windows Cloudflare compatibility fallback.
+A DeepSeek Harness provider bundle for Arena API, optimized for the promotional **Arena Router** balance: OpenAI Responses routing, six compact model entries, additive runtime route restoration, and a narrow Windows Cloudflare compatibility fallback.
 
 > [!WARNING]
 > Model calls send conversation data—including prompts, system instructions, tool schemas and results, and attachments—to Arena and potentially its selected upstream provider. Calls, retries, and a fallback replay may consume credits. Installation, `dsh --profile web --dump-config`, `npm test`, and `npm run verify` make no model calls. The optional live smoke test is potentially billable and requires explicit opt-in.
+
+> [!IMPORTANT]
+> If the Arena dashboard shows funds under **Arena Router** and `$0.00` under **All models**, choose `coding-router-preview` or `claude-coding-router-preview`. The four direct Claude entries require a nonzero **All models** balance and otherwise return HTTP `402 paid_credits_required`.
 
 ## Requirements
 
@@ -32,12 +35,12 @@ The bundle uses conservative fallback metadata of 262,144 context tokens, 32,768
 
 | Model id | Display name | Access note |
 | --- | --- | --- |
-| `coding-router-preview` | Arena Coding Router | Router-oriented preview |
-| `claude-coding-router-preview` | Arena Claude Coding Router | Router-oriented preview |
-| `claude-fable-5-1` | Claude Fable 5.1 | Direct selection; may require all-model credits |
-| `claude-opus-5-5` | Claude Opus 5.5 | Direct selection; may require all-model credits |
-| `claude-sonnet-5-5` | Claude Sonnet 5.5 | Direct selection; may require all-model credits |
-| `claude-haiku-5-5` | Claude Haiku 5.5 | Direct selection; may require all-model credits |
+| `coding-router-preview` | Arena Router · Coding (promo) | Recommended for promotional **Arena Router** balance |
+| `claude-coding-router-preview` | Arena Router · Claude (promo) | Recommended Claude-oriented choice for promotional **Arena Router** balance |
+| `claude-fable-5-1` | All models · Claude Fable 5.1 | Direct selection; requires **All models** balance |
+| `claude-opus-5-5` | All models · Claude Opus 5.5 | Direct selection; requires **All models** balance |
+| `claude-sonnet-5-5` | All models · Claude Sonnet 5.5 | Direct selection; requires **All models** balance |
+| `claude-haiku-5-5` | All models · Claude Haiku 5.5 | Direct selection; requires **All models** balance |
 
 Catalog presence does not guarantee account entitlement, current availability, pricing, rate limits, or model limits. Check the current Arena dashboard for your account.
 
@@ -46,7 +49,7 @@ Catalog presence does not guarantee account entitlement, current availability, p
 Prefer a release tag:
 
 ```sh
-dsh plugin --profile web add github:Sazmir/dsh-llm-arena#v0.1.0
+dsh plugin --profile web add github:Sazmir/dsh-llm-arena#v0.1.1
 dsh --profile web --dump-config
 dsh web
 ```

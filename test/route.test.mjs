@@ -17,6 +17,15 @@ const EXPECTED_MODELS = [
   'claude-haiku-5-5',
 ]
 
+const EXPECTED_NAMES = [
+  'Arena Router · Coding (promo)',
+  'Arena Router · Claude (promo)',
+  'All models · Claude Fable 5.1',
+  'All models · Claude Opus 5.5',
+  'All models · Claude Sonnet 5.5',
+  'All models · Claude Haiku 5.5',
+]
+
 test('route metadata stays narrow and deterministic', () => {
   assert.equal(ARENA_PROVIDER, 'arena')
   assert.deepEqual(PI_AI_ENTRY, { id: 'llm-pi-ai', name: '@deepseek-ai/dsh-llm-pi-ai' })
@@ -27,6 +36,7 @@ test('route metadata stays narrow and deterministic', () => {
   assert.equal(ARENA_ROUTE.defaultMaxTokens, 32768)
   assert.deepEqual(ARENA_ROUTE.defaultInput, ['text'])
   assert.deepEqual(ARENA_ROUTE.models.map((model) => model.id), EXPECTED_MODELS)
+  assert.deepEqual(ARENA_ROUTE.models.map((model) => model.name), EXPECTED_NAMES)
   assert.deepEqual(ARENA_ROUTE.models[0].input, ['text', 'image'])
   assert.equal(ARENA_ROUTE.models[0].contextWindow, 1000000)
   assert.equal(ARENA_ROUTE.models[0].maxTokens, 128000)

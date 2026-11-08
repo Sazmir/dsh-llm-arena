@@ -1,7 +1,7 @@
 {
   "name": "dsh-llm-arena",
-  "version": "0.1.0",
-  "description": "Arena API provider bundle for DeepSeek Harness, with OpenAI Responses routing and a Windows PowerShell/.NET fallback for Cloudflare-blocked Node.js requests.",
+  "version": "0.1.1",
+  "description": "Arena API provider bundle for DeepSeek Harness, optimized for promotional Arena Router credits, with OpenAI Responses routing and a Windows Cloudflare fallback.",
   "keywords": [
     "deepseek-harness",
     "dsh-plugin",
@@ -37,7 +37,7 @@
   },
   "meta": {
     "title": "Arena API",
-    "description": "Adds Arena API models through OpenAI Responses with a narrow Windows Cloudflare compatibility fallback."
+    "description": "Use Arena router models with promotional Router credits; direct Claude entries require All models balance."
   },
   "files": [
     "lib/",

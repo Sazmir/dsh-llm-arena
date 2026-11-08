@@ -17,6 +17,7 @@ These instructions apply to the entire repository. This project is a standalone 
   4. `claude-opus-5-5`
   5. `claude-sonnet-5-5`
   6. `claude-haiku-5-5`
+- The first two display names must identify **Arena Router** promotional use. The four direct Claude display names must identify the required **All models** balance.
 - `cordis.patch.yml` inserts only `llm-arena`. It must not patch `llm-pi-ai` statically because a bundle patch would replace providers contributed by earlier bundles.
 - Runtime route restoration adds only a missing default `arena` route, preserves every other provider, respects an explicit user-defined `arena` route, refuses malformed provider maps, and never writes profile files.
 - Transport interception is limited to the exact canonical origin `https://api.arena.ai`.

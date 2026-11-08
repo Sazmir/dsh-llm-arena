@@ -2,10 +2,13 @@
 
 [English](README.md) | Русский
 
-Bundle-провайдер Arena API для DeepSeek Harness: маршрутизация через OpenAI Responses, компактный каталог из шести моделей, аддитивное восстановление маршрута во время выполнения и узкий Windows fallback для совместимости с Cloudflare.
+Bundle-провайдер Arena API для DeepSeek Harness, оптимизированный под промобаланс **Arena Router**: маршрутизация через OpenAI Responses, компактный каталог из шести моделей, аддитивное восстановление маршрута во время выполнения и узкий Windows fallback для совместимости с Cloudflare.
 
 > [!WARNING]
 > Каждый запрос к модели передаёт Arena содержимое диалога, включая промпты, системные инструкции, схемы и результаты инструментов и вложения; данные также могут попасть выбранному Arena поставщику модели. Запросы, повторы и повторная отправка через fallback могут списывать кредиты. Установка, `dsh --profile web --dump-config`, `npm test` и `npm run verify` не вызывают модели. Необязательная живая проверка потенциально платная и требует явного согласия.
+
+> [!IMPORTANT]
+> Если в Arena dashboard средства находятся в строке **Arena Router**, а в **All models** указано `$0.00`, выбирайте `coding-router-preview` или `claude-coding-router-preview`. Четыре прямые модели Claude требуют ненулевой баланс **All models**, иначе возвращается HTTP `402 paid_credits_required`.
 
 ## Требования
 
@@ -32,12 +35,12 @@ Bundle-провайдер Arena API для DeepSeek Harness: маршрутиз�
 
 | Model id | Отображаемое имя | Примечание о доступе |
 | --- | --- | --- |
-| `coding-router-preview` | Arena Coding Router | Router-oriented preview |
-| `claude-coding-router-preview` | Arena Claude Coding Router | Router-oriented preview |
-| `claude-fable-5-1` | Claude Fable 5.1 | Прямой выбор; могут требоваться all-model credits |
-| `claude-opus-5-5` | Claude Opus 5.5 | Прямой выбор; могут требоваться all-model credits |
-| `claude-sonnet-5-5` | Claude Sonnet 5.5 | Прямой выбор; могут требоваться all-model credits |
-| `claude-haiku-5-5` | Claude Haiku 5.5 | Прямой выбор; могут требоваться all-model credits |
+| `coding-router-preview` | Arena Router · Coding (promo) | Рекомендуется для промобаланса **Arena Router** |
+| `claude-coding-router-preview` | Arena Router · Claude (promo) | Рекомендуемый Claude-oriented вариант для промобаланса **Arena Router** |
+| `claude-fable-5-1` | All models · Claude Fable 5.1 | Прямой выбор; требуется баланс **All models** |
+| `claude-opus-5-5` | All models · Claude Opus 5.5 | Прямой выбор; требуется баланс **All models** |
+| `claude-sonnet-5-5` | All models · Claude Sonnet 5.5 | Прямой выбор; требуется баланс **All models** |
+| `claude-haiku-5-5` | All models · Claude Haiku 5.5 | Прямой выбор; требуется баланс **All models** |
 
 Наличие записи в каталоге не гарантирует доступ аккаунта, текущую доступность, цену, rate limits или лимиты модели. Проверяйте актуальные данные в Arena dashboard своего аккаунта.
 
@@ -46,7 +49,7 @@ Bundle-провайдер Arena API для DeepSeek Harness: маршрутиз�
 Предпочтительно устанавливать по release tag:
 
 ```sh
-dsh plugin --profile web add github:Sazmir/dsh-llm-arena#v0.1.0
+dsh plugin --profile web add github:Sazmir/dsh-llm-arena#v0.1.1
 dsh --profile web --dump-config
 dsh web
 ```

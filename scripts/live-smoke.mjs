@@ -17,7 +17,7 @@ const response = await arenaFetch('https://api.arena.ai/v1/responses', {
   headers: {
     authorization: `Bearer ${apiKey}`,
     'content-type': 'application/json',
-    'user-agent': 'dsh-llm-arena-live-smoke/0.1.0',
+    'user-agent': 'dsh-llm-arena-live-smoke/0.1.1',
   },
   body: JSON.stringify({
     model: 'coding-router-preview',
